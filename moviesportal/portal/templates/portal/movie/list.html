@@ -1,0 +1,35 @@
+{% extends "portal/base.html" %}
+{% load static %}
+
+{% block title %}
+	{% if category %}{{ category.name }}{% else %}Movies{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div id="sidebar">
+		<h3>Categories</h3>
+		<ul>
+			<li {% if not category %}class="selected"{% endif %}>
+				<a href="{% url "portal:movie_list" %}">All</a>
+			</li>
+			{% for c in categories %}
+				<li {% if category.slug == c.slug %}class="selected"{% endif %}>
+					<a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div id="main" class="movie-list">
+	<h1>{% if category %}{{ category.name }}{% else %}Movies{% endif %}</h1>
+	{% for movie in movies %}
+		<div class="item">
+			<a href="{{ movie.get_absolute_url }}">
+				<img src="{% if movie.image %}{{ movie.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+			</a>
+			<a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a>
+			<br>
+        	{{ movie.year }}
+		</div>
+	{% endfor %}
+	</div>
+{% endblock %}
