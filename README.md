@@ -1,4 +1,4 @@
-This Django application is a movie portal. User sees movies catalogue divided into categories in the main site. Clicking on a movie icon renders movie details display. Movies are added via Admin panel.
+This Django application is a movie portal. User sees movies catalogue divided into categories in the main site. Clicking on a movie icon or title renders movie details display. Movies are added via Admin panel.
 
 Prerequisites:
 
